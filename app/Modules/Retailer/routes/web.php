@@ -1,5 +1,6 @@
 <?php
-Route::middleware(['auth','retailer'])->group(function () {
+Route::middleware(['auth','retailer'])->group(function ()
+{
     Route::get('retailer/dashboard', 'RetailerController@dashboard');
     Route::get('retailer/profile', 'RetailerController@profile');
     Route::post('retailer/update/account-credential', 'RetailerController@updateAccountCredential');

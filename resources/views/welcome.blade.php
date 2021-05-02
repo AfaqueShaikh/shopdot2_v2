@@ -30,9 +30,9 @@
                         <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Retailer Register</a>
+                            <a href="{{ route('register', ['type' => 'retailer']) }}" class="ml-4 text-sm text-gray-700 underline">Retailer Register</a>
                         @endif
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Content Creator Register</a>
+                            <a href="{{ route('register', ['type' => 'contentcreator']) }}" class="ml-4 text-sm text-gray-700 underline">Content Creator Register</a>
                     @endauth
                 </div>
             @endif

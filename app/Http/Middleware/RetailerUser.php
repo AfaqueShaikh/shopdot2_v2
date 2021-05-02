@@ -17,9 +17,12 @@ class RetailerUser
     public function handle($request, Closure $next)
     {
         if(Auth::check()){
-            if(Auth::user()->user_type == '3'){
+            if(Auth::user()->user_type == '3')
+            {
                 return $next($request);
-            } else {
+            }
+            else
+            {
                 Auth::logout();
                 return redirect('/login');
             }

@@ -11,6 +11,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -51,11 +52,23 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    public function showRegistrationForm()
+    public function showRegistrationForm(Request $request)
     {
-//        $slug = $request->userType == '2' ? 'brand-terms-and-privacy' : 'retailer-terms-and-privacy';
+        $type = '';
+        if(isset($request->type))
+        {
+            if($request->type == "retailer")
+            {
+                $type = '3';
+            }
+            else
+            {
+                $type = '4';
+            }
+        }
+        //$slug = $request->userType == '2' ? 'brand-terms-and-privacy' : 'retailer-terms-and-privacy';
         $data = AdminCms::where('slug','retailer-terms-and-privacy')->first();
-        return view('auth.register', ['policy'=> $data]);
+        return view('auth.register', ['policy'=> $data, 'type' => $type]);
     }
 
     protected function validator(array $data)
@@ -79,8 +92,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
-
         $user = User::create([
             'first_name' => isset($data['first_name']) ? $data['first_name'] : '',
             'last_name' => isset($data['last_name']) ? $data['last_name'] : '',
@@ -90,7 +101,8 @@ class RegisterController extends Controller
             'user_type' => $data['user_type'],
             'user_status' => '1',
         ]);
-        if($user->user_type == '2'){
+        if($user->user_type == '2')
+        {
             $cms = new Cms();
             $cms->user_id = $user->id;
             $cms->title = 'return-policy';
@@ -104,7 +116,9 @@ class RegisterController extends Controller
             $cms->save();
 
             $template = "emails.brand-activation";
-        } else{
+        }
+        else
+        {
             $template = "emails.retailer-activation";
         }
         $data = [
