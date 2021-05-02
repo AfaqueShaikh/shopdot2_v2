@@ -1,0 +1,1 @@
+<footer class="footer"> © 2020 All rights reserved.</footer><?php /**PATH F:\xampp\htdocs\shopdot\resources\views/layouts/retailer-footer.blade.php ENDPATH**/ ?>

@@ -1,0 +1,2 @@
+Hello,
+<p>Thank you for register.<a href="<?php echo e(url('/activate/account/'.$to_email.'/'.$activation_code)); ?>">Click here</a> to activate your account</p><?php /**PATH C:\wamp64\www\shopdot\resources\views/emails/retailer-activation.blade.php ENDPATH**/ ?>
