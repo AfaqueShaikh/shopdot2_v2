@@ -51,7 +51,7 @@
                             </div>
                         </div>
                     @else
-                        <form method="POST" action="{{ route('password.email') }}" class="sign__form form">
+                        <form method="POST" id="forgot_password_form" action="{{ route('password.email') }}" class="sign__form form">
                             @csrf
                             <div class="form__field form__field--floating-label">
                                 <input value="{{ old('email') }}" type="email" name="email" id="email"
@@ -59,6 +59,8 @@
                                 <label for="email">{{ __('E-Mail Address') }}</label>
 
                             </div>
+                            <label for="email" class="error"></label>
+                            <br>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -83,6 +85,25 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js?r=182"></script>
 <script src="{{url('public/front/js/app.min.js')}}" defer></script>
+
+<script src="{{url('public/front/js/jquery.min.js')}}"></script>
+<script src="{{url('public/front/js/jquery.validate.min.js')}}"></script>
+<script>
+    $("#forgot_password_form").validate({
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+        },
+        messages: {
+            email: {
+                required: "Please enter email id.",
+                email: "Please enter valid email id."
+            },
+        }
+    });
+</script>
 
 </body>
 

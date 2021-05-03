@@ -16,7 +16,7 @@
     <link media="all" rel="stylesheet" href="{{url('public/front/css/styles.min.css')}}">
 </head>
 
-<body class="sign-page">
+<body class="retailer-page">
 <div class="wrapper">
     <header class="header">
 

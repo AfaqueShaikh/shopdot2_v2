@@ -50,19 +50,22 @@
                         </svg>
                       </div>
                     </div> --}}
-                    <form method="POST" action="{{ route('login') }}" class="sign__form form" autocomplete="off">
+                    <form method="POST" id="login_form" action="{{ route('login') }}" class="sign__form form"
+                          autocomplete="off">
                         @csrf
                         <div class="form__field form__field--floating-label">
                             <input value="{{ old('email') }}" type="email" name="email" id="email"
                                    placeholder="Email address" required autocomplete="off">
                             <label for="email">Email address</label>
-
                         </div>
+                        <label for="email" class="error"></label>
+                        <br><br>
                         @error('email')
                         <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
+
                         <div class="form__field form__field--floating-label">
                             <input class="password" type="password" name="password" id="password"
                                    placeholder="Enter password" required autocomplete="off">
@@ -71,11 +74,14 @@
                             <div class="password-message">Password is <span>strong!</span></div>
                             <span class="password-show"></span>
                         </div>
+                        <label for="password" class="error"></label>
                         @error('password')
                         <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
+
+
                         <div class="form__field buttons">
                             <!--disabled by default, remove it when do validation-->
                             <button type="submit" class="button">Sign In</button>
@@ -100,6 +106,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js?r=182"></script>
 <script src="{{url('public/front/js/app.min.js')}}" defer></script>
+
+<script src="{{url('public/front/js/jquery.min.js')}}"></script>
+<script src="{{url('public/front/js/jquery.validate.min.js')}}"></script>
+<script>
+    $("#login_form").validate({
+        rules: {
+            email: {
+                required: true,
+                email: true
+            },
+            password: {
+                required: true
+            },
+        },
+        messages: {
+            email: {
+                required: "Please enter email id.",
+                email: "Please enter valid email id."
+            },
+            password: {
+                required: "Please enter password."
+            },
+        }
+    });
+</script>
 
 </body>
 

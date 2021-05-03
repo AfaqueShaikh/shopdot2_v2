@@ -48,7 +48,7 @@
                         </div>
                     </div>
 
-                    <form action="{{ route('password.update') }}" method="POST" class="sign__form form">
+                    <form id="reset_password_form" action="{{ route('password.update') }}" method="POST" class="sign__form form">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
@@ -64,8 +64,10 @@
                             @enderror
                         </div>
 
+
                         <div class="form__field form__field--floating-label">
-                            <input class="password" type="password" name="password" id="password" placeholder="Create password" required>
+                            <input class="password" type="password" name="password" id="password"
+                                   placeholder="Create password" required>
                             <label for="password-new">{{ __('Password') }}</label>
                             <!--for show password-message add class 'show'-->
                             @error('password')
@@ -75,8 +77,12 @@
                             @enderror
                             <span class="password-show"></span>
                         </div>
+                        <label for="password" class="error"></label>
+
+
                         <div class="form__field form__field--floating-label">
-                            <input class="password" type="password" name="password_confirmation" id="password-confirm" placeholder="Create password" required>
+                            <input class="password" type="password" name="password_confirmation" id="password-confirm"
+                                   placeholder="Create password" required>
                             <label for="password-confirm">{{ __('Confirm Password') }}</label>
                             <!--for show password-message add class 'show'-->
                             @error('password')
@@ -86,6 +92,8 @@
                             @enderror
                             <span class="password-show"></span>
                         </div>
+                        <label for="password-confirm" class="error"></label>
+                        <br><br>
                         <div class="form__field buttons">
                             <!--disabled by default, remove it when do validation-->
                             <button type="submit" class="button">{{ __('Reset Password') }}</button>
@@ -103,6 +111,31 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js?r=182"></script>
 <script src="{{url('public/front/js/app.min.js')}}" defer></script>
+
+<script src="{{url('public/front/js/jquery.min.js')}}"></script>
+<script src="{{url('public/front/js/jquery.validate.min.js')}}"></script>
+<script>
+    $("#reset_password_form").validate({
+        rules: {
+            password: {
+                required: true,
+            },
+            password_confirmation: {
+                required: true,
+                equalTo : "#password"
+            },
+        },
+        messages: {
+            password: {
+                required: "Please enter password.",
+            },
+            password_confirmation: {
+                required: "Please confirm password.",
+                equalTo: "Password and confirm password should be same."
+            },
+        }
+    });
+</script>
 
 </body>
 

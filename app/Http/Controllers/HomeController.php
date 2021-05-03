@@ -151,7 +151,8 @@ class HomeController extends Controller
     {
         if($request->method() == "GET")
         {
-            return view('retailer-extra-info');
+            $info = RetailerInfo::where('user_id',Auth::user()->id)->first();
+            return view('retailer-extra-info',compact('info'));
         }
         else
         {
@@ -177,7 +178,8 @@ class HomeController extends Controller
     {
         if($request->method() == "GET")
         {
-            return view('retailer-category');
+            $info = RetailerInfo::where('user_id',Auth::user()->id)->first();
+            return view('retailer-category',compact('info'));
         }
         else
         {
@@ -202,7 +204,8 @@ class HomeController extends Controller
     {
         if($request->method() == "GET")
         {
-            return view('retailer-value');
+            $info = RetailerInfo::where('user_id',Auth::user()->id)->first();
+            return view('retailer-value',compact('info'));
         }
         else
         {
@@ -227,7 +230,8 @@ class HomeController extends Controller
     {
         if($request->method() == "GET")
         {
-           return view('retailer-connect-shop');
+            $info = RetailerInfo::where('user_id',Auth::user()->id)->first();
+           return view('retailer-connect-shop',compact('info'));
         }
         else
         {

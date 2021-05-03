@@ -48,7 +48,7 @@
                         <p>Hi! Nice to meet you. Sign up to start shopping for your store and community.</p>
                     </div>
 
-                    <form class="sign__form form" method="POST" action="{{ route('register') }}">
+                    <form id="registration_form" class="sign__form form" method="POST" action="{{ route('register') }}">
                         @csrf
                         <input type="hidden" name="user_type" value="{{$type}}">
                         <div class="form__field form__field--half form__field--floating-label">
@@ -58,8 +58,8 @@
                         </div>
                         @error('first_name')
                         <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+                            <strong>{{ $message }}</strong>
+                        </span>
                         @enderror
                         <div class="form__field form__field--half form__field--floating-label">
                             <input id="l-name" type="text" placeholder="Last name" name="last_name"
@@ -77,6 +77,8 @@
                                    value="{{ old('email') }}" required>
                             <label for="email">Email address</label>
                         </div>
+                        <label for="email" class="error"></label>
+                        <br><br>
                         @error('email')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -90,6 +92,8 @@
                             <div class="password-message">Password is <span>strong!</span></div>
                             <span class="password-show"></span>
                         </div>
+                        <label for="password" class="error"></label>
+                        <br><br>
                         @error('password')
                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -135,6 +139,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
 <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/MorphSVGPlugin.min.js?r=182"></script>
 <script src="{{url('public/front/js/app.min.js')}}" defer></script>
+
+<script src="{{url('public/front/js/jquery.min.js')}}"></script>
+<script src="{{url('public/front/js/jquery.validate.min.js')}}"></script>
 <script>
     function checkPolicy(ele) {
         if ($(ele).prop('checked')) {
@@ -143,7 +150,41 @@
             $('#register').prop('disabled', true);
         }
     }
+
+    $("#registration_form").validate({
+        rules: {
+            /*first_name: {
+                required: true,
+            },
+            last_name: {
+                required: true,
+            },*/
+            email: {
+                required: true,
+            },
+            password: {
+                required: true,
+            },
+        },
+        messages: {
+            /*first_name: {
+                required: "Please enter first name.",
+            },
+            last_name: {
+                required: "Please enter last name.",
+            },*/
+            email: {
+                required: "Please enter email id.",
+            },
+            password: {
+                required: "Please enter password.",
+            },
+        }
+    });
+
+
 </script>
+
 </body>
 
 </html>

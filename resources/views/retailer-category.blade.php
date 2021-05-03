@@ -16,7 +16,7 @@
     <link media="all" rel="stylesheet" href="{{url('public/front/css/styles.min.css')}}">
 </head>
 
-<body class="sign-page">
+<body class="retailer-page">
 <div class="wrapper">
     <header class="header">
 
@@ -34,6 +34,44 @@
     </header>
 
     <main class="content">
+        <section class="section info-bar">
+            <div class="container info-bar-container">
+                <!--For store type we have 5 icons from design file-->
+                <!--1. store-type-brik-and-mortar-->
+                <!--2. store-type-marketplace-->
+                <!--3. store-type-online-only-->
+                <!--4. store-type-other-store-->
+                <!--5. store-type-popup-->
+
+
+                <div class="info-bar__item business-name">
+                    <div class="info-bar__icon">
+                        <svg class="icon">
+                            <use xlink:href="images/sprite.svg#store-type-brik-and-mortar"></use>
+                        </svg>
+                    </div>
+                    <div class="info-bar__text">
+                        <p>{{$info->business_name}}</p>
+                    </div>
+                </div>
+
+
+
+                <div class="info-bar__item interactions">
+                    @php
+                        $exploded_data = explode(',',$info->interact_with_customer);
+                    @endphp
+                    <div class="info-bar__text">
+                        <p>{{$exploded_data[0]}}, +{{count($exploded_data) - 1}}</p>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </section>
         <section class="section subheader">
             <div class="container subheader-container">
 
