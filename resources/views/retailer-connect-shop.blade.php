@@ -103,35 +103,35 @@
                 <div class="steps">
                     <!--To highlight current step add class 'active'-->
                     <!--To highlight done step add class 'done'-->
-                    <div class="step ">Info</div>
-                    <div class="step ">Category</div>
-                    <div class="step ">Values</div>
-                    <div class="step active">Connect Shop</div>
+                    <div class="step done">Info</div>
+                    <div class="step done">Category</div>
+                    <div class="step done">Values</div>
+                    <div class="step active process">Connect Shop</div>
                     <div class="step ">Invite Brands</div>
                 </div>
             </div>
         </section>
 
-        <section class="section retailer retailer-info">
-            <div class="container retailer-container">
-                <div class="retailer__content">
+        <section class="section primary primary-info">
+            <div class="container primary-container">
+                <div class="primary__content">
                     <div class="text-message text-center">
                         <p>We're almost there. Let's connect ShopDot with your Shopify store. <br>
                             This will allow you to start selling on your website. </p>
                     </div>
-                    <form id="retailer_connect_shop_form" action="{{url('/retailer/connect/shop')}}" method="POST" class="retailer__form form">
+                    <form id="retailer_connect_shop_form" action="{{url('/retailer/connect/shop')}}" method="POST" class="primary__form form">
                         @csrf
                         <div class="form__field form__field--floating-label">
-                            <input type="text" name="shopify_url" id="shopify_url" placeholder="Your Shopify shop URL">
+                            <input type="text" name="shopify_url" id="shopify_url" placeholder="Your Shopify shop URL" value="{{$info->website_address}}">
                             <label for="shopify_url">Your Shopify shop URL</label>
                         </div>
                         <label for="shopify_url" class="error"></label>
                         <div class="form__field buttons">
-                            <button type="submit" class="button">Connect</button>
+                            <button type="submit" class="button" id="connect_shop_btn">Connect</button>
                         </div>
                         <div class="form__field helpers">
                             <div class="later">
-                                <a href="javascript:void(0);">Connect your shop later</a>
+                                <a href="{{url('/retailer/invite/brands')}}">Connect your shop later</a>
                             </div>
                         </div>
                     </form>
@@ -164,6 +164,17 @@
             }
         }
     });
+
+    $('#shopify_url').keyup(function () {
+        if($(this).val().length === 0)
+        {
+            $('#connect_shop_btn').attr('disabled',true);
+        }
+        else
+        {
+            $('#connect_shop_btn').attr('disabled',false);
+        }
+    })
 </script>
 
 </body>

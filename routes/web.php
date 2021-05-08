@@ -34,6 +34,8 @@ Route::get('/logout', function () {
 
 Auth::routes(['verify' => true]);
 
+// retailer info
+
 Route::get('/retailer/info','HomeController@retailerInfo');
 Route::post('/retailer/info','HomeController@retailerInfo');
 
@@ -51,6 +53,33 @@ Route::post('/retailer/connect/shop','HomeController@retailerConnectShop');
 
 Route::get('/retailer/invite/brands','HomeController@retailerInviteBrands');
 Route::post('/retailer/invite/brands','HomeController@retailerInviteBrands');
+
+// content creator info
+
+Route::get('/content-creator/info','HomeController@contentCreatorInfo');
+Route::post('/content-creator/info','HomeController@contentCreatorInfo');
+
+Route::get('/content-creator/extra/info','HomeController@contentCreatorExtraInfo');
+Route::post('/content-creator/extra/info','HomeController@contentCreatorExtraInfo');
+
+Route::get('/content-creator/content','HomeController@contentCreatorContent');
+Route::post('/content-creator/content','HomeController@contentCreatorContent');
+
+Route::get('/content-creator/values','HomeController@contentCreatorValues');
+Route::post('/content-creator/values','HomeController@contentCreatorValues');
+
+Route::get('/content-creator/connect/shop','HomeController@contentCreatorConnectShop');
+Route::post('/content-creator/connect/shop','HomeController@contentCreatorConnectShop');
+
+Route::get('/content-creator/invite/brands','HomeController@contentCreatorInviteBrands');
+Route::post('/content-creator/invite/brands','HomeController@contentCreatorInviteBrands');
+
+
+Route::post('/send/brands/invitation/mail','HomeController@sendBrandsInvitationMail');
+Route::post('/content-creator/send/brands/invitation/mail','HomeController@contentCreatorSendBrandsInvitationMail');
+
+Route::get('/welcome/to/dashboard','HomeController@welcomeToDashboard');
+Route::get('/content-creator/to/dashboard','HomeController@contentCreatorToDashboard');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/activate/account/{email}/{code}', 'HomeController@activateAccount');

@@ -22,6 +22,7 @@ class RetailerController extends Controller
      */
     public function dashboard()
     {
+
         return view("Retailer::dashboard");
     }
     public function profile(){

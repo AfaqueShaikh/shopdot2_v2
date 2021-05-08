@@ -78,8 +78,8 @@
                 <div class="steps">
                     <!--To highlight current step add class 'active'-->
                     <!--To highlight done step add class 'done'-->
-                    <div class="step">Info</div>
-                    <div class="step active">Category</div>
+                    <div class="step done">Info</div>
+                    <div class="step active process">Category</div>
                     <div class="step ">Values</div>
                     <div class="step ">Connect Shop</div>
                     <div class="step ">Invite Brands</div>
@@ -87,17 +87,17 @@
             </div>
         </section>
 
-        <section class="section retailer retailer-info">
-            <div class="container retailer-container">
-                <div class="retailer__content">
+        <section class="section primary primary-info">
+            <div class="container primary-container">
+                <div class="primary__content">
                     <div class="text-message text-center">
                         <p>Please pick the best category for your shop.</p>
                     </div>
-                    <form action="{{url('/retailer/category')}}" method="POST" id="retailer-category-form" class="retailer__form retailer__form--wide no-bg form">
+                    <form action="{{url('/retailer/category')}}" method="POST" id="retailer-category-form" class="primary__form primary__form--wide no-bg form">
                         @csrf
                         <div class="form__categories categories">
                             <div class="category">
-                                <input type="radio" value="Apparel Boutique" name="category" id="category-1">
+                                <input class="category_selection" type="radio" value="Apparel Boutique" name="category" id="category-1" @if(isset($info->category) && $info->category == "Apparel Boutique") checked @endif>
                                 <label for="category-1">
                                   <span class="category__icon">
                                     <svg class="icon">
@@ -111,7 +111,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Book Store" name="category" id="category-2">
+                                <input class="category_selection" type="radio" value="Book Store" name="category" id="category-2" @if(isset($info->category) && $info->category == "Book Store") checked @endif>
                                 <label for="category-2">
                   <span class="category__icon">
                     <svg class="icon">
@@ -125,7 +125,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Bakery or Coffee Shop" name="category" id="category-3">
+                                <input class="category_selection" type="radio" value="Bakery or Coffee Shop" name="category" id="category-3" @if(isset($info->category) && $info->category == "Bakery or Coffee Shop") checked @endif>
                                 <label for="category-3">
                   <span class="category__icon">
                     <svg class="icon">
@@ -139,7 +139,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Electronics" name="category" id="category-4">
+                                <input class="category_selection" type="radio" value="Electronics" name="category" id="category-4"  @if(isset($info->category) && $info->category == "Electronics") checked @endif>
                                 <label for="category-4">
                   <span class="category__icon">
                     <svg class="icon">
@@ -153,7 +153,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Fitness or Yoga Studio" name="category" id="category-5">
+                                <input class="category_selection" type="radio" value="Fitness or Yoga Studio" name="category" id="category-5"  @if(isset($info->category) && $info->category == "Fitness or Yoga Studio") checked @endif>
                                 <label for="category-5">
                   <span class="category__icon">
                     <svg class="icon">
@@ -167,7 +167,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Florist or Garden Store" name="category" id="category-6">
+                                <input class="category_selection" type="radio" value="Florist or Garden Store" name="category" id="category-6"  @if(isset($info->category) && $info->category == "Florist or Garden Store") checked @endif>
                                 <label for="category-6">
                   <span class="category__icon">
                     <svg class="icon">
@@ -181,7 +181,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Footwear" name="category" id="category-7">
+                                <input class="category_selection" type="radio" value="Footwear" name="category" id="category-7"  @if(isset($info->category) && $info->category == "Footwear") checked @endif>
                                 <label for="category-7">
                   <span class="category__icon">
                     <svg class="icon">
@@ -195,7 +195,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Furniture Store" name="category" id="category-8">
+                                <input class="category_selection" type="radio" value="Furniture Store" name="category" id="category-8"  @if(isset($info->category) && $info->category == "Furniture Store") checked @endif>
                                 <label for="category-8">
                   <span class="category__icon">
                     <svg class="icon">
@@ -209,7 +209,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Gift Store" name="category" id="category-9">
+                                <input class="category_selection" type="radio" value="Gift Store" name="category" id="category-9"  @if(isset($info->category) && $info->category == "Gift Store") checked @endif>
                                 <label for="category-9">
                   <span class="category__icon">
                     <svg class="icon">
@@ -223,7 +223,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Kids or Toy Store" name="category" id="category-10">
+                                <input  class="category_selection" type="radio" value="Kids or Toy Store" name="category" id="category-10"  @if(isset($info->category) && $info->category == "Kids or Toy Store") checked @endif>
                                 <label for="category-10">
                   <span class="category__icon">
                     <svg class="icon">
@@ -237,7 +237,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Medical Office" name="category" id="category-11">
+                                <input class="category_selection" type="radio" value="Medical Office" name="category" id="category-11"  @if(isset($info->category) && $info->category == "Medical Office") checked @endif>
                                 <label for="category-11">
                   <span class="category__icon">
                     <svg class="icon">
@@ -251,7 +251,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Musical Instruments" name="category" id="category-12">
+                                <input class="category_selection" type="radio" value="Musical Instruments" name="category" id="category-12"  @if(isset($info->category) && $info->category == "Musical Instruments") checked @endif>
                                 <label for="category-12">
                   <span class="category__icon">
                     <svg class="icon">
@@ -265,7 +265,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Pet Store" name="category" id="category-13">
+                                <input class="category_selection" type="radio" value="Pet Store" name="category" id="category-13"  @if(isset($info->category) && $info->category == "Pet Store") checked @endif>
                                 <label for="category-13">
                   <span class="category__icon">
                     <svg class="icon">
@@ -279,7 +279,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Pharmacy" name="category" id="category-14">
+                                <input class="category_selection" type="radio" value="Pharmacy" name="category" id="category-14"  @if(isset($info->category) && $info->category == "Pharmacy") checked @endif>
                                 <label for="category-14">
                   <span class="category__icon">
                     <svg class="icon">
@@ -293,7 +293,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Spa or Salon" name="category" id="category-15">
+                                <input class="category_selection" type="radio" value="Spa or Salon" name="category" id="category-15"  @if(isset($info->category) && $info->category == "Spa or Salon") checked @endif>
                                 <label for="category-15">
                   <span class="category__icon">
                     <svg class="icon">
@@ -307,7 +307,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Sporting and Outdoor" name="category" id="category-16">
+                                <input class="category_selection" type="radio" value="Sporting and Outdoor" name="category" id="category-16"  @if(isset($info->category) && $info->category == "porting and Outdoor") checked @endif>
                                 <label for="category-16">
                   <span class="category__icon">
                     <svg class="icon">
@@ -321,7 +321,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Stationeries Store" name="category" id="category-17">
+                                <input class="category_selection" type="radio" value="Stationeries Store" name="category" id="category-17"  @if(isset($info->category) && $info->category == "Stationeries Store") checked @endif>
                                 <label for="category-17">
                   <span class="category__icon">
                     <svg class="icon">
@@ -335,7 +335,7 @@
                             </div>
 
                             <div class="category">
-                                <input type="radio" value="Other" name="category" id="category-18">
+                                <input class="category_selection" type="radio" value="Other" name="category" id="category-18"  @if(isset($info->category) && $info->category == "Other") checked @endif>
                                 <label for="category-18">
                   <span class="category__icon">
                     <svg class="icon">
@@ -350,7 +350,7 @@
                         </div>
                         <label for="category" class="error"></label>
                         <div class="form__field buttons">
-                            <button type="submit" class="button">Next</button>
+                            <button type="submit" id="category_select_btn" class="button" @if(!isset($info->category)) disabled @endif>Next</button>
                         </div>
                     </form>
                 </div>
@@ -384,6 +384,20 @@
             },
         }
     });
+
+    $('.category_selection').click(function () {
+        validateData();
+    });
+
+    function validateData() {
+        if ($(".category_selection").is(":checked"))
+        {
+            $('#category_select_btn').attr('disabled', false);
+        }
+        else {
+            $('#category_select_btn').attr('disabled', true);
+        }
+    }
 </script>
 
 </body>

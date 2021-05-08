@@ -40,7 +40,7 @@
                 <div class="steps">
                     <!--To highlight current step add class 'active'-->
                     <!--To highlight done step add class 'done'-->
-                    <div class="step active">Info</div>
+                    <div class="step active process">Info</div>
                     <div class="step ">Category</div>
                     <div class="step ">Values</div>
                     <div class="step ">Connect Shop</div>
@@ -49,9 +49,10 @@
             </div>
         </section>
 
-        <section class="section retailer retailer-info">
-            <div class="container retailer-container">
-                <div class="retailer__content">
+        <section class="section primary primary-info">
+            <div class="container primary-container">
+                <div class="primary__content">
+
                     <div id="error-div" style="display: none;">
                         <div class="info-window">
                             <div class="info-window__text">
@@ -73,15 +74,15 @@
                         <div class="text-message text-center">
                             <p>Hi {{Auth::user()->first_name.' '.Auth::user()->last_name}}, welcome aboard. Can you tell us more about you and your business? </p>
                         </div>
-                        <form method="POST" action="{{url('/retailer/info')}}" id="retailer-info-form" class="retailer__form form">
+                        <form method="POST" action="{{url('/retailer/info')}}" id="retailer-info-form" class="primary__form form">
                             @csrf
                             <div class="form__field form__field--floating-label">
-                                <input type="text" name="business_name" id="business_name" placeholder="Business name" required>
+                                <input type="text" name="business_name" id="business_name" placeholder="Business name" @if(isset($info)) value="{{$info->business_name}}" @endif required>
                                 <label for="business_name">Business name</label>
                             </div>
                             <label for="business_name" class="error"></label>
                             <div class="form__field form__field--floating-label">
-                                <input type="text" name="website_address" id="website_address" placeholder="Website address" required>
+                                <input type="text" name="website_address" id="website_address" placeholder="Website address" @if(isset($info)) value="{{$info->website_address}}" @endif required>
                                 <label for="website_address">Website address</label>
                             </div>
                             <label for="website_address" class="error"></label>
@@ -130,7 +131,7 @@
                                 {{--<label for="platform" class="error">Please select eCommmerce hosting platform.</label>--}}
                             </div>
                             <div class="form__field buttons">
-                                <button type="submit" class="button">Next</button>
+                                <button type="submit" class="button" id="info_next_btn" @if(!isset($info)) disabled @endif>Next</button>
                             </div>
                         </form>
                     </div>
@@ -151,6 +152,8 @@
 <script src="{{url('public/front/js/jquery.min.js')}}"></script>
 <script src="{{url('public/front/js/jquery.validate.min.js')}}"></script>
 <script>
+    var business_name_char_count = 0;
+    var website_address_char_count = 0;
     $( "#retailer-info-form" ).validate({
         rules: {
             business_name: {
@@ -183,6 +186,31 @@
             $('#error-div').show();
         }
     });
+
+    $('#business_name').keyup(function (event) {
+        business_name_char_count = $(this).val().length;
+        validateData();
+    });
+
+    $('#website_address').keyup(function (event) {
+        website_address_char_count = $(this).val().length;
+        validateData();
+    });
+
+
+    function validateData()
+    {
+        if(business_name_char_count > 0 && website_address_char_count > 0)
+        {
+            $('#info_next_btn').attr('disabled',false);
+        }
+        else
+        {
+            $('#info_next_btn').attr('disabled',true);
+        }
+    }
+
+
 </script>
 
 </body>

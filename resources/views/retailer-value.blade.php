@@ -89,26 +89,36 @@
                 <div class="steps">
                     <!--To highlight current step add class 'active'-->
                     <!--To highlight done step add class 'done'-->
-                    <div class="step">Info</div>
-                    <div class="step">Category</div>
-                    <div class="step active">Values</div>
+                    <div class="step done">Info</div>
+                    <div class="step done">Category</div>
+                    <div class="step active process">Values</div>
                     <div class="step ">Connect Shop</div>
                     <div class="step ">Invite Brands</div>
                 </div>
             </div>
         </section>
 
-        <section class="section retailer retailer-info">
-            <div class="container retailer-container">
-                <div class="retailer__content">
+        @php
+
+            $values = [];
+            if(isset($info->values))
+            {
+                $values = explode(', ',$info->values);
+            }
+        @endphp
+
+        <section class="section primary primary-info">
+            <div class="container primary-container">
+                <div class="primary__content">
                     <div class="text-message text-center">
                         <p>Please select the values that are most important to you and your customers.</p>
                     </div>
-                    <form id="retailer-values-form" action="{{url('/retailer/values')}}" method="POST" class="retailer__form retailer__form--wide no-bg form">
+
+                    <form id="retailer-values-form" action="{{url('/retailer/values')}}" method="POST" class="primary__form primary__form--wide no-bg form">
                         @csrf
                         <div class="form__values values">
                             <div class="value">
-                                <input type="checkbox" value="BIPOC Owned" name="value[]" id="value-1">
+                                <input class="values" type="checkbox" name="value[]" value="BIPOC Owned" id="value-1" @if(count($values) > 0 && in_array('BIPOC Owned',$values)) checked @endif>
                                 <label for="value-1">
                   <span class="value__icon">
                     <svg class="icon">
@@ -122,7 +132,7 @@
                             </div>
 
                             <div class="value">
-                                <input type="checkbox" value="Eco-friendly" name="value[]" id="value-2">
+                                <input class="values" type="checkbox" name="value[]" value="Eco-friendly" id="value-2" @if(count($values) > 0 && in_array('Eco-friendly',$values)) checked @endif>
                                 <label for="value-2">
                   <span class="value__icon">
                     <svg class="icon">
@@ -136,7 +146,7 @@
                             </div>
 
                             <div class="value">
-                                <input type="checkbox" value="Handmade" name="value[]" id="value-3">
+                                <input class="values" type="checkbox" name="value[]" value="Handmade" id="value-3" @if(count($values) > 0 && in_array('Handmade',$values)) checked @endif>
                                 <label for="value-3">
                   <span class="value__icon">
                     <svg class="icon">
@@ -150,7 +160,7 @@
                             </div>
 
                             <div class="value">
-                                <input type="checkbox" value="Made in Canada" name="value[]" id="value-4">
+                                <input class="values" type="checkbox" name="value[]" value="Made in Canada" id="value-4" @if(count($values) > 0 && in_array('Made in Canada',$values)) checked @endif>
                                 <label for="value-4">
                   <span class="value__icon">
                     <svg class="icon">
@@ -164,7 +174,7 @@
                             </div>
 
                             <div class="value">
-                                <input type="checkbox" value="Made in USA" name="value[]" id="value-5">
+                                <input class="values" type="checkbox" name="value[]" value="Made in USA" id="value-5" @if(count($values) > 0 && in_array('Made in USA',$values)) checked @endif>
                                 <label for="value-5">
                   <span class="value__icon">
                     <svg class="icon">
@@ -178,7 +188,7 @@
                             </div>
 
                             <div class="value">
-                                <input type="checkbox" value="Not on Amazon" name="value[]" id="value-6">
+                                <input class="values" type="checkbox" name="value[]" value="Not on Amazon" id="value-6" @if(count($values) > 0 && in_array('Not on Amazon',$values)) checked @endif>
                                 <label for="value-6">
                   <span class="value__icon">
                     <svg class="icon">
@@ -192,7 +202,7 @@
                             </div>
 
                             <div class="value">
-                                <input type="checkbox" value="Organic" name="value[]" id="value-7">
+                                <input class="values" type="checkbox" name="value[]" value="Organic" id="value-7" @if(count($values) > 0 && in_array('Organic',$values)) checked @endif>
                                 <label for="value-7">
                   <span class="value__icon">
                     <svg class="icon">
@@ -206,7 +216,7 @@
                             </div>
 
                             <div class="value">
-                                <input type="checkbox" value="Size Inclusive" name="value[]" id="value-8">
+                                <input class="values" type="checkbox" name="value[]" value="Size Inclusive" id="value-8" @if(count($values) > 0 && in_array('Size Inclusive',$values)) checked @endif>
                                 <label for="value-8">
                   <span class="value__icon">
                     <svg class="icon">
@@ -220,7 +230,7 @@
                             </div>
 
                             <div class="value">
-                                <input type="checkbox" value="Small Batch" name="value[]" id="value-9">
+                                <input class="values" type="checkbox" name="value[]" value="Small Batch" id="value-9" @if(count($values) > 0 && in_array('Small Batch',$values)) checked @endif>
                                 <label for="value-9">
                   <span class="value__icon">
                     <svg class="icon">
@@ -234,7 +244,7 @@
                             </div>
 
                             <div class="value">
-                                <input type="checkbox" value="Social Good" name="value[]" id="value-10">
+                                <input class="values" type="checkbox" name="value[]" value="Social Good" id="value-10" @if(count($values) > 0 && in_array('Social Good',$values)) checked @endif>
                                 <label for="value-10">
                   <span class="value__icon">
                     <svg class="icon">
@@ -248,7 +258,7 @@
                             </div>
 
                             <div class="value">
-                                <input type="checkbox" value="Women Owned" name="value[]" id="value-11">
+                                <input class="values" type="checkbox" name="value[]" value="Women Owned" id="value-11" @if(count($values) > 0 && in_array('Women Owned',$values)) checked @endif>
                                 <label for="value-11">
                   <span class="value__icon">
                     <svg class="icon">
@@ -262,7 +272,7 @@
                             </div>
 
                             <div class="value">
-                                <input type="checkbox" value="Other" name="value[]" id="value-12">
+                                <input class="values" type="checkbox" name="value[]" value="Other" id="value-12" @if(count($values) > 0 && in_array('Other',$values)) checked @endif>
                                 <label for="value-12">
                   <span class="value__icon">
                     <svg class="icon">
@@ -276,9 +286,9 @@
                             </div>
 
                         </div>
-                        <label for="value[]" class="error"></label>
+
                         <div class="form__field buttons">
-                            <button type="submit" class="button">Next</button>
+                            <button type="submit" class="button" id="value_btn" @if(count($values) === 0) disabled @endif>Next</button>
                         </div>
                     </form>
                 </div>
@@ -312,6 +322,20 @@
             },
         }
     });
+
+    $('.values').click(function () {
+        validateData();
+    });
+
+    function validateData() {
+        if ($(".values").is(":checked"))
+        {
+            $('#value_btn').attr('disabled', false);
+        }
+        else {
+            $('#value_btn').attr('disabled', true);
+        }
+    }
 </script>
 
 </body>
